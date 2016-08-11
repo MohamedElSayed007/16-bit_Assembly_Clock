@@ -8,13 +8,13 @@ ORG 100H
 .MODEL TINY 
 .STACK 100H 
 .DATA 
-	MSG						DB			"The Current Time Is : $" 
+	MSG				DB			"The Current Time Is : $" 
 	FORMAT				DB			"00:00:00$" 
-	MNAME					DB			"Coded By : ionerds.com$" 
+	MNAME				DB			"Coded By : ionerds.com$" 
 	ENDLOOP				DW			?
-	TEMP					DB			?
-	ESCAPE_ASCII	EQU			27
-	GREEN					EQU			0010B
+	TEMP				DB			?
+	ESCAPE_ASCII			EQU			27
+	GREEN				EQU			0010B
 	
 .CODE 
 MAIN PROC
@@ -52,9 +52,9 @@ CONT:
 	
 	;MOVE CURSOR 
 	MOV AH, 02H 
-	MOV BH, 0							      ;DISPLAY PAGE 
-	MOV DH, 05H									;ROW 
-	MOV DL, 00H									;COLUMN 
+	MOV BH, 0		   	 	        ;DISPLAY PAGE 
+	MOV DH, 05H 		 		      	;ROW 
+	MOV DL, 00H					;COLUMN 
 	INT 10H		 
 
 
@@ -75,8 +75,8 @@ MAJOR PROC
 	CMP TEMP, 1
 	JE BEGIN	
 	
-	MOV AX, 0     							 ;Instead of setting AH=0 , Formatting or Setting AX=0 Will set AH=0
-	MOV AL, 013H   							 ;Setting Video Mode			,Available Modes : 01h , 03h	 
+	MOV AX, 0     			 ;Instead of setting AH=0 , Formatting or Setting AX=0 Will set AH=0
+	MOV AL, 013H   			 ;Setting Video Mode			,Available Modes : 01h , 03h	 
 	INT 10H 
 	
 
@@ -87,7 +87,7 @@ MAJOR PROC
 	MOV CX, -1
 	MOV DX, 0
 	MOV ENDLOOP, 4799
-	CALL PAINT 									;Call Paint Function
+	CALL PAINT 	     	;Call Paint Function
 	 
 	 
 	 
@@ -142,9 +142,9 @@ BEGIN:
 	 
 	;MOVE CURSOR 
 	MOV AH, 02H 
-	MOV BH, 0							      ;DISPLAY PAGE 
-	MOV DH, 02H									;ROW 
-	MOV DL, 00H									;COLUMN 
+	MOV BH, 0				 ;DISPLAY PAGE 
+	MOV DH, 02H				 ;ROW 
+	MOV DL, 00H				 ;COLUMN 
 	INT 10H		 
 	
 
@@ -206,14 +206,13 @@ BIN_TO_ASCII ENDP                   ; END OF PROCEDURE BIN_TO_ASCII
  
 PAINT PROC		 ;Input : Color in AL , BH = Page Number , CX = X Pos , DX = Y Pos , ENDLOOP = When to stop looping
 	
-	MOV AH, 0CH      								;FUNCTION CODE FOR DRAWING PIXELS 
-	;MOV AL, 00001110B								;MOV COLOR CODE FOR AL REGISTER 
+	MOV AH, 0CH      			;FUNCTION CODE FOR DRAWING PIXELS 
 	MOV CX, -1 
 		;SETTING BH TO THE PAGE NUMBER IS NOT NEEDED AS IT ALREADY CONTAINS THE PAGE NUMBER 
 	PLOOP: 
-			INC CX   										 ;X POINT POS.
+			INC CX   			 ;X POINT POS.
 			INT 10H 
-			CMP CX, ENDLOOP;4799 
+			CMP CX, ENDLOOP
 			JNE PLOOP
 	
 	RET 
