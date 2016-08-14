@@ -10,7 +10,7 @@ ORG 100H
 .DATA 
 	MSG				DB			"The Current Time Is : $" 
 	FORMAT				DB			"00:00:00$" 
-	MNAME				DB			"Coded By : ionerds.com$" 
+	MNAME				DB			"Coded By : Mohamed El Sayed$" 
 	ENDLOOP				DW			?
 	TEMP				DB			?
 	ESCAPE_ASCII			EQU			27
@@ -106,7 +106,7 @@ MAJOR PROC
 	MOV AH, 02H 
 	MOV BH, 0 
 	MOV DH, 00H 
-	MOV DL, 08H 
+	MOV DL, 06H 
 	INT 10H 
 	 
 	;PRINTING MY NAME
