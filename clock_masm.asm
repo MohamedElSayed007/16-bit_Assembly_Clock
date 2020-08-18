@@ -1,5 +1,5 @@
 ;Coded by : Mohamed El Sayed
-;engmohamedelsayed007@gmail.com
+;m.elsayed4420@gmail.com
 
 ;This source code is compatible and tested with MASM 5.00 assembler, the emu8086 compatible code can be founded in the same repository
 ;with the name of clock_emu8086.asm
